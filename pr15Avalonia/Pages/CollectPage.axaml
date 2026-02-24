@@ -1,0 +1,146 @@
+<nav:Page xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:nav="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
+             xmlns:models="clr-namespace:pr15Avalonia.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="pr15Avalonia.Pages.CollectPage">
+    <Grid Background="#F0F4F8">
+        <Border Background="White"
+                CornerRadius="12"
+                BoxShadow="0 4 16 0 #1A000000"
+                Margin="16" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="10,10,10,5" CornerRadius="6">
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                        <TextBlock Text="Выбор материнской платы" FontSize="20" FontWeight="SemiBold"/>
+                        <Button Content="Назад" Width="130" Background="Bisque" Click="Back_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Поиск и фильтры -->
+                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,5" CornerRadius="6">
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                        <TextBox Watermark="Поиск по названию..." x:Name="SearchBox" 
+                                 Width="300" TextChanged="SearchBox_TextChanged"/>
+                        <Button Content="Сортировка по цене" Width="180" Background="Bisque" 
+                                Click="SortByPrice_Click"/>
+                        <Button Content="Сортировка по названию" Width="180" Background="Bisque" 
+                                Click="SortByName_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Список материнских плат -->
+                <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,10" CornerRadius="6">
+                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                             x:Name="MotherboardListBox" 
+                             Margin="10"
+                             SelectionChanged="MotherboardListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Motherboard">
+                                <Border BorderBrush="LightGray" 
+                                        BorderThickness="1" 
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Margin="5"
+                                        Background="White">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Изображение -->
+                                        <Image Grid.Column="0" 
+                                               x:Name="MotherboardImage"
+                                               Width="130" 
+                                               Height="130"
+                                               Stretch="Uniform"
+                                               Margin="0,0,15,0"/>
+
+                                        <!-- Информация -->
+                                        <StackPanel Grid.Column="1" Spacing="8">
+                                            <!-- Название -->
+                                            <TextBlock Text="{Binding IdNavigation.Name}" 
+                                                       FontWeight="Bold" 
+                                                       FontSize="18"
+                                                       TextWrapping="Wrap"/>
+
+                                            <!-- Производитель -->
+                                            <TextBlock Text="{Binding IdNavigation.Manufacturer.Name}" 
+                                                       FontSize="14" 
+                                                       Foreground="Gray"/>
+
+                                            <!-- Характеристики -->
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Сокет:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Socket.Name}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Форм-фактор:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Formfactor.Name}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Память:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Memorytype.Name}"/>
+                                                <TextBlock Text=", слотов:"/>
+                                                <TextBlock Text="{Binding Memoryslots}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="PCI слотов:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Pcislots}"/>
+                                                <TextBlock Text=" | SATA портов:" Margin="10,0,0,0" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Sataports}"/>
+                                            </StackPanel>
+
+                                            <!-- Цена -->
+                                            <TextBlock Text="{Binding IdNavigation.Price, StringFormat='{}{0:N0} ₽'}" 
+                                                       FontSize="20" 
+                                                       FontWeight="Bold" 
+                                                       Foreground="Green"
+                                                       Margin="0,10,0,0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Border>
+
+                <!-- Кнопка выбора -->
+                <Border Grid.Row="3" Margin="10,0,10,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <TextBlock x:Name="SelectedInfoText" 
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   Margin="0,0,20,0"/>
+                        <Button Content="Выбрать" 
+                                Width="150" 
+                                Height="40"
+                                Background="Green" 
+                                Foreground="White"
+                                FontSize="16"
+                                Click="Select_Click"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</nav:Page>

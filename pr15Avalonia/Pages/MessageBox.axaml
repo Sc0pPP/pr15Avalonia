@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="pr15Avalonia.Pages.Messagebox"
+        Width="400" Height="200"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Title="Сообщение"
+        Background="#F0F4F8"
+        SystemDecorations="BorderOnly">
+
+    <Border Background="#F0F4F8"
+            CornerRadius="12"
+            BoxShadow="0 4 24 0 #1A000000"
+            Margin="16" Padding="24">
+        <StackPanel Spacing="20">
+
+            <TextBlock x:Name="MessageText"
+                       TextWrapping="Wrap"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#2D3748"
+                       HorizontalAlignment="Center"/>
+
+            <Button Content="OK"
+                    Click="Ok_Click"
+                    Background="#4299E1"
+                    Foreground="White"
+                    CornerRadius="8"
+                    Padding="24,8"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"/>
+
+        </StackPanel>
+    </Border>
+
+</Window>
