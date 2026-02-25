@@ -78,10 +78,10 @@ public static class CompatibilityChecker
             requiredPower += 300; // Запас по умолчанию
             
         // Добавляем запас на остальные компоненты (материнка, память, накопители)
-        requiredPower += 150;
+        // requiredPower += 150;
         
         // Рекомендуется запас 20%
-        return psu.Power >= requiredPower * 1.2m;
+        return psu.Power >= requiredPower ;
     }
     
     // Проверка совместимости кулера и процессора (сокет)

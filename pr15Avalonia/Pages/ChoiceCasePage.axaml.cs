@@ -12,138 +12,138 @@ using WpfLikeAvaloniaNavigation;
 
 namespace pr15Avalonia.Pages;
 
-public partial class ChoiceBPPage : Page
+public partial class ChoiceCasePage : Page
 {
     private readonly PcDbContext _context;
-    private ObservableCollection<Powersupply> _allBP; // Изменено на ObservableCollection
-    private ObservableCollection<Powersupply> _filteredBP; // Изменено на ObservableCollection
+    private ObservableCollection<Case> _allCase; // Изменено на ObservableCollection
+    private ObservableCollection<Case> _filteredCase; // Изменено на ObservableCollection
 
-    public ChoiceBPPage()
+    public ChoiceCasePage()
     {
         InitializeComponent();
         _context = new PcDbContext();
-        LoadBP();
+        LoadCase();
     }
-
-    private async void LoadBP()
+    private async void LoadCase()
     {
         try
         {
-            var BPListBox = this.FindControl<ListBox>("BPListBox");
+            var CaseListBox = this.FindControl<ListBox>("CaseListBox");
 
-            var BPs = await _context.Powersupplies
+            var Cases = await _context.Cases
                 .Include(m => m.IdNavigation) // Basepart
                 .ThenInclude(bp => bp.Manufacturer)
-                .Include(p => p.Fandimension)
-                .Include(p => p.Certification)
+                .Include(p => p.Boardformfactorcases)
+                .ThenInclude(p=>p.Formfactor)
 
                 .ToListAsync();
 
 
 
-            _allBP = new ObservableCollection<Powersupply>(BPs);
-            _filteredBP = new ObservableCollection<Powersupply>(BPs);
-        
-        BPListBox.ItemsSource = _filteredBP;
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Ошибка: {ex.Message}");
-        Console.WriteLine($"StackTrace: {ex.StackTrace}");
-    }
-}
+            _allCase = new ObservableCollection<Case>(Cases);
+            _filteredCase = new ObservableCollection<Case>(Cases);
 
-private void Back_Click(object? sender, RoutedEventArgs e)
-{
-    NavigationService.GoBack();
-}
+            CaseListBox.ItemsSource = _filteredCase;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка: {ex.Message}");
+            Console.WriteLine($"StackTrace: {ex.StackTrace}");
+        }
+    }
+
+
+    private void Back_Click(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.GoBack();
+    }
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
     {
         try
         {
             var searchBox = sender as TextBox;
-            var BPListBox = this.FindControl<ListBox>("BPListBox");
+            var CaseListBox = this.FindControl<ListBox>("CaseListBox");
 
             var searchText = searchBox?.Text?.ToLower() ?? "";
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
-                _filteredBP = new ObservableCollection<Powersupply>(_allBP);
+                _filteredCase = new ObservableCollection<Case>(_allCase);
             }
             else
             {
-                var filtered = _allBP
+                var filtered = _allCase
                     .Where(m => m.IdNavigation != null &&
                                 m.IdNavigation.Name.ToLower().Contains(searchText))
                     .ToList();
-                _filteredBP = new ObservableCollection<Powersupply>(filtered);
+                _filteredCase = new ObservableCollection<Case>(filtered);
             }
 
-            BPListBox.ItemsSource = _filteredBP;
+            CaseListBox.ItemsSource = _filteredCase;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка поиска: {ex.Message}");
-        }    }
+        }
+    }
 
     private void SortByPrice_Click(object? sender, RoutedEventArgs e)
     {
-
         try
         {
             var searchBox = sender as TextBox;
-            var BPListBox = this.FindControl<ListBox>("BPListBox");
+            var CaseListBox = this.FindControl<ListBox>("CaseListBox");
 
             var searchText = searchBox?.Text?.ToLower() ?? "";
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
-                _filteredBP = new ObservableCollection<Powersupply>(_allBP);
+                _filteredCase = new ObservableCollection<Case>(_allCase);
             }
             else
             {
-                var filtered = _allBP
+                var filtered = _allCase
                     .Where(m => m.IdNavigation != null &&
                                 m.IdNavigation.Name.ToLower().Contains(searchText))
                     .ToList();
-                _filteredBP = new ObservableCollection<Powersupply>(filtered);
+                _filteredCase = new ObservableCollection<Case>(filtered);
             }
 
-            BPListBox.ItemsSource = _filteredBP;
+            CaseListBox.ItemsSource = _filteredCase;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка поиска: {ex.Message}");
-        }    }
+        }
+    }
 
     private void SortByName_Click(object? sender, RoutedEventArgs e)
     {
         try
         {
-            var BPListBox = this.FindControl<ListBox>("BPListBox");
+            var CaseListBox = this.FindControl<ListBox>("CaseListBox");
 
-            var sorted = _filteredBP
+            var sorted = _filteredCase
                 .OrderBy(m => m.IdNavigation?.Name ?? "")
                 .ToList();
 
-            _filteredBP = new ObservableCollection<Powersupply>(sorted);
-            BPListBox.ItemsSource = _filteredBP;
+            _filteredCase = new ObservableCollection<Case>(sorted);
+            CaseListBox.ItemsSource = _filteredCase;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка сортировки: {ex.Message}");
-        }   
-    }
+        }       }
 
     private void CoolerListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         try
         {
             var selectedInfoText = this.FindControl<TextBlock>("SelectedInfoText");
-            var BPListBox = sender as ListBox;
+            var CaseListBox = sender as ListBox;
 
-            if (BPListBox?.SelectedItem is Powersupply selected &&
+            if (CaseListBox?.SelectedItem is Case selected &&
                 selected.IdNavigation != null)
             {
                 selectedInfoText.Text = $"Выбрано: {selected.IdNavigation.Name}";
@@ -156,15 +156,17 @@ private void Back_Click(object? sender, RoutedEventArgs e)
 
     private void Select_Click(object? sender, RoutedEventArgs e)
     {
+
+      
         try
         {
-            var BPListBox = this.FindControl<ListBox>("BPListBox");
+            var CaseListBox = this.FindControl<ListBox>("CaseListBox");
 
-            if (BPListBox.SelectedItem is Powersupply selected &&
+            if (CaseListBox.SelectedItem is Case selected &&
                 selected.IdNavigation != null)
             {
-                CurrentBuild.SelectedPowerSupply = selected;
-                CurrentBuild.PowerSupplyBasePart = selected.IdNavigation;
+                CurrentBuild.SelectedCase = selected;
+                CurrentBuild.CaseBasePart = selected.IdNavigation;
 
                 var errors = CompatibilityChecker.ValidateCurrentBuild(_context);
                 if (errors.Any())
@@ -191,6 +193,7 @@ private void Back_Click(object? sender, RoutedEventArgs e)
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
 
-        NavigationService.Navigate(new ChoiceCasePage());    
+        NavigationService.Navigate(new ChoiceBPPage());
+        
     }
 }

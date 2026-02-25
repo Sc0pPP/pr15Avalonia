@@ -53,6 +53,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/ChoiceRamPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/ChoiceSSDPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/CollectPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
