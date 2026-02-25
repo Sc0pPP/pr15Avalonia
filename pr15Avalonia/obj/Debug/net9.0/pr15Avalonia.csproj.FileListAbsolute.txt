@@ -205,3 +205,5 @@ C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\obj\Debug\net9.0\pr15Avalo
 C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\obj\Debug\net9.0\ref\pr15Avalonia.dll
 C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\bin\Debug\net9.0\WpfLikeAvaloniaNavigation.dll
 C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\bin\Debug\net9.0\Avalonia.Labs.Controls.dll
+C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\obj\Debug\net9.0\pr15Avalonia.sourcelink.json
+C:\Users\Scop\RiderProjects\pr15Avalonia\pr15Avalonia\bin\Debug\net9.0\AsyncImageLoader.Avalonia.dll

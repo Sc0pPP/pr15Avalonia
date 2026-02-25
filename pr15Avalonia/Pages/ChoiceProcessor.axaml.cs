@@ -95,7 +95,7 @@ public partial class ChoiceProcessor : Page
     {
         try
         {
-            var motherboardListBox = this.FindControl<ListBox>("MotherboardListBox");
+            var CpuListBox = this.FindControl<ListBox>("CpuListBox");
                 
             var sorted = _filteredCpu
                 .OrderBy(m => m.IdNavigation?.Price ?? 0)
@@ -113,7 +113,7 @@ public partial class ChoiceProcessor : Page
     {
         try
         {
-            var motherboardListBox = this.FindControl<ListBox>("MotherboardListBox");
+            var CpuListBox = this.FindControl<ListBox>("CpuListBox");
                 
             var sorted = _filteredCpu
                 .OrderBy(m => m.IdNavigation?.Name ?? "")
@@ -135,7 +135,7 @@ public partial class ChoiceProcessor : Page
             var selectedInfoText = this.FindControl<TextBlock>("SelectedInfoText");
             var ProcessorListBox = sender as ListBox;
                 
-            if (ProcessorListBox?.SelectedItem is Motherboard selected && 
+            if (ProcessorListBox?.SelectedItem is Cpu selected && 
                 selected.IdNavigation != null)
             {
                 selectedInfoText.Text = $"Выбрано: {selected.IdNavigation.Name}";
@@ -180,6 +180,6 @@ public partial class ChoiceProcessor : Page
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-        
+        NavigationService.Navigate(new ChoiceGpuPage() );
     }
 }
