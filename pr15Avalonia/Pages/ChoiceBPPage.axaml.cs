@@ -12,122 +12,123 @@ using WpfLikeAvaloniaNavigation;
 
 namespace pr15Avalonia.Pages;
 
-public partial class ChoiceGpuPage : Page
+public partial class ChoiceBPPage : Page
 {
     private readonly PcDbContext _context;
-    private ObservableCollection<Gpu> _allGpu; // Изменено на ObservableCollection
-    private ObservableCollection<Gpu> _filteredGpu; // Изменено на ObservableCollection
-    public ChoiceGpuPage()
+    private ObservableCollection<Powersupply> _allBP; // Изменено на ObservableCollection
+    private ObservableCollection<Powersupply> _filteredBP; // Изменено на ObservableCollection
+
+    public ChoiceBPPage()
     {
         InitializeComponent();
         _context = new PcDbContext();
-        LoadGpu();
+        LoadBP();
     }
-    private async void LoadGpu()
+
+    private async void LoadBP()
     {
         try
         {
-            var GpuListBox = this.FindControl<ListBox>("GpuListBox");
+            var BPListBox = this.FindControl<ListBox>("BPListBox");
 
-            var Gpus = await _context.Gpus
+            var BPs = await _context.Powersupplies
                 .Include(m => m.IdNavigation) // Basepart
                 .ThenInclude(bp => bp.Manufacturer)
-                .Include(p => p.Gpuinterface)
+                .Include(p => p.Fandimension)
+                .Include(p => p.Certification)
+
                 .ToListAsync();
 
-            
 
-            _allGpu = new ObservableCollection<Gpu>(Gpus);
-            _filteredGpu = new ObservableCollection<Gpu>(Gpus);
 
-            GpuListBox.ItemsSource = _filteredGpu;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка: {ex.Message}");
-            Console.WriteLine($"StackTrace: {ex.StackTrace}");
-        }
+            _allBP = new ObservableCollection<Powersupply>(BPs);
+            _filteredBP = new ObservableCollection<Powersupply>(BPs);
+        
+        BPListBox.ItemsSource = _filteredBP;
     }
-
-
-
-    private void Back_Click(object? sender, RoutedEventArgs e)
+    catch (Exception ex)
     {
-        NavigationService.GoBack();
+        Console.WriteLine($"Ошибка: {ex.Message}");
+        Console.WriteLine($"StackTrace: {ex.StackTrace}");
     }
+}
+
+private void Back_Click(object? sender, RoutedEventArgs e)
+{
+    NavigationService.GoBack();
+}
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
     {
         try
         {
             var searchBox = sender as TextBox;
-            var СpuListBox = this.FindControl<ListBox>("CpuListBox");
-                
+            var BPListBox = this.FindControl<ListBox>("BPListBox");
+
             var searchText = searchBox?.Text?.ToLower() ?? "";
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
-                _filteredGpu = new ObservableCollection<Gpu>(_allGpu);
+                _filteredBP = new ObservableCollection<Powersupply>(_allBP);
             }
             else
             {
-                var filtered = _allGpu
-                    .Where(m => m.IdNavigation != null && 
+                var filtered = _allBP
+                    .Where(m => m.IdNavigation != null &&
                                 m.IdNavigation.Name.ToLower().Contains(searchText))
                     .ToList();
-                _filteredGpu = new ObservableCollection<Gpu>(filtered);
+                _filteredBP = new ObservableCollection<Powersupply>(filtered);
             }
 
-            GpuListBox.ItemsSource = _filteredGpu;
+            BPListBox.ItemsSource = _filteredBP;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка поиска: {ex.Message}");
-        }   
-    }
+        }    }
 
     private void SortByPrice_Click(object? sender, RoutedEventArgs e)
     {
+
         try
         {
             var searchBox = sender as TextBox;
-            var GpuListBox = this.FindControl<ListBox>("GpuListBox");
-                
+            var BPListBox = this.FindControl<ListBox>("BPListBox");
+
             var searchText = searchBox?.Text?.ToLower() ?? "";
 
             if (string.IsNullOrWhiteSpace(searchText))
             {
-                _filteredGpu = new ObservableCollection<Gpu>(_allGpu);
+                _filteredBP = new ObservableCollection<Powersupply>(_allBP);
             }
             else
             {
-                var filtered = _allGpu
-                    .Where(m => m.IdNavigation != null && 
+                var filtered = _allBP
+                    .Where(m => m.IdNavigation != null &&
                                 m.IdNavigation.Name.ToLower().Contains(searchText))
                     .ToList();
-                _filteredGpu = new ObservableCollection<Gpu>(filtered);
+                _filteredBP = new ObservableCollection<Powersupply>(filtered);
             }
 
-            GpuListBox.ItemsSource = _filteredGpu;
+            BPListBox.ItemsSource = _filteredBP;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка поиска: {ex.Message}");
-        }   
-    }
+        }    }
 
     private void SortByName_Click(object? sender, RoutedEventArgs e)
     {
         try
         {
-            var GpuListBox = this.FindControl<ListBox>("GpuListBox");
-                
-            var sorted = _filteredGpu
+            var BPListBox = this.FindControl<ListBox>("BPListBox");
+
+            var sorted = _filteredBP
                 .OrderBy(m => m.IdNavigation?.Name ?? "")
                 .ToList();
-                
-            _filteredGpu = new ObservableCollection<Gpu>(sorted);
-            GpuListBox.ItemsSource = _filteredGpu;
+
+            _filteredBP = new ObservableCollection<Powersupply>(sorted);
+            BPListBox.ItemsSource = _filteredBP;
         }
         catch (Exception ex)
         {
@@ -135,15 +136,14 @@ public partial class ChoiceGpuPage : Page
         }   
     }
 
-    private void GpuListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void CoolerListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        
         try
         {
             var selectedInfoText = this.FindControl<TextBlock>("SelectedInfoText");
-            var GpuListBox = sender as ListBox;
-                
-            if (GpuListBox?.SelectedItem is Gpu selected && 
+            var BPListBox = sender as ListBox;
+
+            if (BPListBox?.SelectedItem is Powersupply selected &&
                 selected.IdNavigation != null)
             {
                 selectedInfoText.Text = $"Выбрано: {selected.IdNavigation.Name}";
@@ -152,28 +152,27 @@ public partial class ChoiceGpuPage : Page
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
-        }   
-    }
+        }    }    
 
     private void Select_Click(object? sender, RoutedEventArgs e)
     {
         try
         {
-            var GpuListBox = this.FindControl<ListBox>("GpuListBox");
-                
-            if (GpuListBox.SelectedItem is Gpu selected && 
+            var BPListBox = this.FindControl<ListBox>("BPListBox");
+
+            if (BPListBox.SelectedItem is Powersupply selected &&
                 selected.IdNavigation != null)
             {
-                CurrentBuild.SelectedGpu = selected;
-                CurrentBuild.GpuBasePart = selected.IdNavigation;
+                CurrentBuild.SelectedPowerSupply = selected;
+                CurrentBuild.PowerSupplyBasePart = selected.IdNavigation;
 
                 var errors = CompatibilityChecker.ValidateCurrentBuild(_context);
                 if (errors.Any())
                 {
-                    
+
                     var mainWindow = (Application.Current.ApplicationLifetime
                         as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-                    var dialogg= new Messagebox("Проблемы совместимости: " + string.Join(", ", errors));
+                    var dialogg = new Messagebox("Проблемы совместимости: " + string.Join(", ", errors));
                     dialogg.ShowDialog(mainWindow);
                     return;
                     Console.WriteLine("Проблемы совместимости: " + string.Join(", ", errors));
@@ -181,14 +180,17 @@ public partial class ChoiceGpuPage : Page
                 else
                 {
                     Console.WriteLine("Материнская плата добавлена успешно!");
-                    NavigationService.Navigate(new ChoiceProcessor());
+                    NavigationService.Navigate(new ChoiceBPPage());
                 }
+
             }
+
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-        NavigationService.Navigate(new ChoiceCoolerPage() );
+
+        NavigationService.Navigate(new ChoiceBPPage());    
     }
-    }
+}

@@ -35,6 +35,7 @@ public partial class ChoiceCoolerPage : Page
             var Coolers = await _context.Processorcoolers
                 .Include(m => m.IdNavigation) // Basepart
                 .ThenInclude(bp => bp.Manufacturer)
+                .Include(p => p.Fandimension)
                 .ToListAsync();
 
 
@@ -194,6 +195,6 @@ public partial class ChoiceCoolerPage : Page
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
 
-        NavigationService.Navigate(new ChoiceCoolerPage());
+        NavigationService.Navigate(new ChoiceRamPage());
     }
 }

@@ -3,9 +3,14 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="pr15Avalonia/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/MainWindow.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/ChoiceBPPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/ChoiceCasePage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceGpuPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceProcessor.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/ChoiceRamPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/CollectPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MainPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MessageBox.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />

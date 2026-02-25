@@ -6,7 +6,7 @@
              xmlns:models="clr-namespace:pr15Avalonia.Models"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="pr15Avalonia.Pages.ChoiceGpuPage">
+             x:Class="pr15Avalonia.Pages.ChoiceRamPage">
     <Grid Background="#F0F4F8">
         <Border Background="White"
                 CornerRadius="12"
@@ -23,7 +23,7 @@
                 <!-- Заголовок -->
                 <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="10,10,10,5" CornerRadius="6">
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
-                        <TextBlock Text="Выбор Видеокарты" FontSize="20" FontWeight="SemiBold"/>
+                        <TextBlock Text="Выбор Оперативки" FontSize="20" FontWeight="SemiBold"/>
                         <Button Content="Назад" Width="130" Background="Bisque" Click="Back_Click"/>
                     </StackPanel>
                 </Border>
@@ -43,11 +43,11 @@
     
                 <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,10" CornerRadius="6">
                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                             x:Name="GpuListBox" 
+                             x:Name="CoolerListBox" 
                              Margin="10"
-                             SelectionChanged="GpuListBox_SelectionChanged">
+                             SelectionChanged="CoolerListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="models:Gpu">
+                            <DataTemplate x:DataType="models:Ram">
                                 <Border BorderBrush="LightGray" 
                                         BorderThickness="1" 
                                         CornerRadius="8"
@@ -85,24 +85,28 @@
 
                                             <!-- Характеристики -->
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Интерфейс:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Gpuinterface.Name}"/>
+                                                <TextBlock Text="Тип:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Memorytype.Name}"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="чип" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Chipfrequency }"/>
+                                                <TextBlock Text="Объем" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Capacity }"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Энергопотребление:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Recommendpower}"/>
+                                                <TextBlock Text="Кол-во Плашек:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Count}"/>
                                               
                                             </StackPanel>
-
-
-
-                                          
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Частота:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Ghz, StringFormat={}{0} GHz}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Тайминги:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Timings}"/>
+                                            </StackPanel>
                                             <!-- Цена -->
                                             <TextBlock Text="{Binding IdNavigation.Price, StringFormat='{}{0:N0} ₽'}" 
                                                        FontSize="20" 

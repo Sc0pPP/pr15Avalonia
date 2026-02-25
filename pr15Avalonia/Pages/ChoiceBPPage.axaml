@@ -1,12 +1,12 @@
 <nav:Page xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:nav="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              xmlns:models="clr-namespace:pr15Avalonia.Models"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="pr15Avalonia.Pages.ChoiceGpuPage">
+             x:Class="pr15Avalonia.Pages.ChoiceBPPage">
     <Grid Background="#F0F4F8">
         <Border Background="White"
                 CornerRadius="12"
@@ -23,7 +23,7 @@
                 <!-- Заголовок -->
                 <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="10,10,10,5" CornerRadius="6">
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
-                        <TextBlock Text="Выбор Видеокарты" FontSize="20" FontWeight="SemiBold"/>
+                        <TextBlock Text="Выбор Блока питания" FontSize="20" FontWeight="SemiBold"/>
                         <Button Content="Назад" Width="130" Background="Bisque" Click="Back_Click"/>
                     </StackPanel>
                 </Border>
@@ -43,11 +43,11 @@
     
                 <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,10" CornerRadius="6">
                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                             x:Name="GpuListBox" 
+                             x:Name="BPListBox" 
                              Margin="10"
-                             SelectionChanged="GpuListBox_SelectionChanged">
+                             SelectionChanged="CoolerListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="models:Gpu">
+                            <DataTemplate x:DataType="models:Powersupply">
                                 <Border BorderBrush="LightGray" 
                                         BorderThickness="1" 
                                         CornerRadius="8"
@@ -85,24 +85,20 @@
 
                                             <!-- Характеристики -->
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Интерфейс:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Gpuinterface.Name}"/>
+                                                <TextBlock Text="Мощность:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Power}"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="чип" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Chipfrequency }"/>
+                                                <TextBlock Text="Скорость оборотов" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Fandimension.Name }"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Энергопотребление:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Recommendpower}"/>
+                                                <TextBlock Text="Сертификат" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Certification.Name}"/>
                                               
                                             </StackPanel>
-
-
-
-                                          
                                             <!-- Цена -->
                                             <TextBlock Text="{Binding IdNavigation.Price, StringFormat='{}{0:N0} ₽'}" 
                                                        FontSize="20" 
