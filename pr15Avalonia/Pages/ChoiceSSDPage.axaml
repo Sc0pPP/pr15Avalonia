@@ -23,7 +23,7 @@
                 <!-- Заголовок -->
                 <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="10,10,10,5" CornerRadius="6">
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
-                        <TextBlock Text="Выбор Ssd" FontSize="20" FontWeight="SemiBold"/>
+                        <TextBlock Text="Выбор жесткого диска" FontSize="20" FontWeight="SemiBold"/>
                         <Button Content="Назад" Width="130" Background="Bisque" Click="Back_Click"/>
                     </StackPanel>
                 </Border>
@@ -33,21 +33,21 @@
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
                         <TextBox Watermark="Поиск по названию..." x:Name="SearchBox" 
                                  Width="300" TextChanged="SearchBox_TextChanged"/>
-                        <Button Content="Сортировка по названию" Width="180" Background="Bisque" 
-                                Click="SortByPrice_Click"/>
                         <Button Content="Сортировка по цене" Width="180" Background="Bisque" 
+                                Click="SortByPrice_Click"/>
+                        <Button Content="Сортировка по названию" Width="180" Background="Bisque" 
                                 Click="SortByName_Click"/>
                     </StackPanel>
                 </Border>
 
-    
+                <!-- Список материнских плат -->
                 <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,10" CornerRadius="6">
                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                             x:Name="CoolerListBox" 
+                             x:Name="SSDListBox" 
                              Margin="10"
-                             SelectionChanged="CoolerListBox_SelectionChanged">
+                             SelectionChanged="MotherboardListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
-                            <DataTemplate x:DataType="models:Processorcooler">
+                            <DataTemplate x:DataType="models:Storagedevice">
                                 <Border BorderBrush="LightGray" 
                                         BorderThickness="1" 
                                         CornerRadius="8"
@@ -60,7 +60,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                    
+                                        <!-- Изображение -->
                                         <Image Grid.Column="0" 
                                                x:Name="MotherboardImage"
                                                Width="130" 
@@ -69,8 +69,7 @@
                                                Margin="0,0,15,0"
                                                asyncImageLoader:ImageLoader.Source="{Binding IdNavigation.Image}"/>
 
-
-                                     
+                                        <!-- Информация -->
                                         <StackPanel Grid.Column="1" Spacing="8">
                                             <!-- Название -->
                                             <TextBlock Text="{Binding IdNavigation.Name}" 
@@ -84,27 +83,21 @@
                                                        Foreground="Gray"/>
 
                                             <!-- Характеристики -->
-                                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Размер:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Fandimension.Name}"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="5" >
+                                                <TextBlock Text="Hdd прикол:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Hdd.Rotationspeed}"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Тепловые трубки" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Heatpipes }"/>
+                                                <TextBlock Text="Ssd прикол:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Ssd.Tbw}"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Уровень шума:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Noiselevel}"/>
-                                              
+                                                <TextBlock Text="Скока загружает безперебойно:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="{Binding Capacity}"/>
                                             </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Частота оборотов:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Minspeed, StringFormat=Минимальные:{0}}"/>
-                                                <TextBlock Text="{Binding Maxspeed, StringFormat=Максимальные:{0}}"/>
-                                              
-                                            </StackPanel>
+
                                             <!-- Цена -->
                                             <TextBlock Text="{Binding IdNavigation.Price, StringFormat='{}{0:N0} ₽'}" 
                                                        FontSize="20" 

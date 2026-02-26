@@ -193,7 +193,7 @@ public partial class ChoiceCasePage : Page
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
 
-        NavigationService.Navigate(new ChoiceBPPage());
+        NavigationService.Navigate(new ChoiceSSDPage());
         
     }
 }

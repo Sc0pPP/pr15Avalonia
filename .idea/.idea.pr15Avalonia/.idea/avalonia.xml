@@ -11,6 +11,7 @@
         <entry key="pr15Avalonia/Pages/ChoiceGpuPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceProcessor.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceRamPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/ChoiceSSDPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/CollectPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MainPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MessageBox.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
