@@ -55,7 +55,7 @@ public partial class ChoiceBPPage : Page
 
 private void Back_Click(object? sender, RoutedEventArgs e)
 {
-    NavigationService.GoBack();
+    NavigationService?.GoBack();
 }
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
@@ -180,7 +180,7 @@ private void Back_Click(object? sender, RoutedEventArgs e)
                 else
                 {
                     Console.WriteLine("Материнская плата добавлена успешно!");
-                    NavigationService.Navigate(new ChoiceBPPage());
+                    NavigationService.Navigate(new ChoiceCasePage());
                 }
 
             }
@@ -190,7 +190,6 @@ private void Back_Click(object? sender, RoutedEventArgs e)
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-
-        NavigationService.Navigate(new ChoiceCasePage());    
+        
     }
-}
+}   

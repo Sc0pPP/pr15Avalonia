@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:nav="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              xmlns:models="clr-namespace:pr15Avalonia.Models"
+             x:CompileBindings="True"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="pr15Avalonia.Pages.CollectPage">
@@ -75,28 +76,29 @@
                                             <TextBlock Text="{Binding IdNavigation.Name}" 
                                                        FontWeight="Bold" 
                                                        FontSize="18"
-                                                       TextWrapping="Wrap"/>
+                                                       TextWrapping="Wrap"
+                                                       Foreground="Black"/>
 
                                             <!-- Производитель -->
                                             <TextBlock Text="{Binding IdNavigation.Manufacturer.Name}" 
                                                        FontSize="14" 
-                                                       Foreground="Gray"/>
+                                                       Foreground="Black"/>
 
                                             <!-- Характеристики -->
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Сокет:" FontWeight="SemiBold"/>
-                                                <TextBlock Text="{Binding Socket.Name}"/>
+                                                <TextBlock Text="Сокет:" FontWeight="SemiBold" Foreground="Black"/>
+                                                <TextBlock Text="{Binding Socket.Name}" Foreground="Black"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Форм-фактор:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="Форм-фактор:" FontWeight="SemiBold" Foreground="Black"/>
                                                 <TextBlock Text="{Binding Formfactor.Name}"/>
                                             </StackPanel>
 
                                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                                <TextBlock Text="Память:" FontWeight="SemiBold"/>
+                                                <TextBlock Text="Память:" FontWeight="SemiBold" Foreground="Black"/>
                                                 <TextBlock Text="{Binding Memorytype.Name}"/>
-                                                <TextBlock Text=", слотов:"/>
+                                                <TextBlock Text=", слотов:" Foreground="Black"/>
                                                 <TextBlock Text="{Binding Memoryslots}"/>
                                             </StackPanel>
 

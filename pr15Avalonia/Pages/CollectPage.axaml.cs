@@ -183,7 +183,7 @@ namespace pr15Avalonia.Pages
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             
-                NavigationService.GoBack();
+                NavigationService?.GoBack();
             
         }
     }

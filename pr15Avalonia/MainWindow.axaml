@@ -6,7 +6,7 @@
         xmlns:pr14Avalonia="clr-namespace:pr15Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="pr15Avalonia.MainWindow"
-        Title="ПрактическаяРабота4_Зевакин_Шпилько">
+        Title="Собери комплюктер">
         <Grid>
                 <nav:Frame Grid.Row="1" Name="MainContent"/>
         </Grid>

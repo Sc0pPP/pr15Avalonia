@@ -5,6 +5,7 @@
       <map>
         <entry key="pr15Avalonia/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/MainWindow.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/AssemblyDetailsPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceBPPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceCasePage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />

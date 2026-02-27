@@ -55,7 +55,7 @@ public partial class ChoiceCasePage : Page
 
     private void Back_Click(object? sender, RoutedEventArgs e)
     {
-        NavigationService.GoBack();
+        NavigationService?.GoBack();
     }
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
@@ -156,8 +156,6 @@ public partial class ChoiceCasePage : Page
 
     private void Select_Click(object? sender, RoutedEventArgs e)
     {
-
-      
         try
         {
             var CaseListBox = this.FindControl<ListBox>("CaseListBox");
@@ -171,29 +169,26 @@ public partial class ChoiceCasePage : Page
                 var errors = CompatibilityChecker.ValidateCurrentBuild(_context);
                 if (errors.Any())
                 {
-
                     var mainWindow = (Application.Current.ApplicationLifetime
                         as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
                     var dialogg = new Messagebox("Проблемы совместимости: " + string.Join(", ", errors));
                     dialogg.ShowDialog(mainWindow);
+                    // сбрасываем, раз несовместимо
+                    CurrentBuild.SelectedCase = null;
+                    CurrentBuild.CaseBasePart = null;
                     return;
-                    Console.WriteLine("Проблемы совместимости: " + string.Join(", ", errors));
-                }
-                else
-                {
-                    Console.WriteLine("Материнская плата добавлена успешно!");
-                    NavigationService.Navigate(new ChoiceBPPage());
                 }
 
+                NavigationService.Navigate(new ChoiceSSDPage());
             }
-
+            else
+            {
+                Console.WriteLine("Ничего не выбрано");
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-
-        NavigationService.Navigate(new ChoiceSSDPage());
-        
     }
 }

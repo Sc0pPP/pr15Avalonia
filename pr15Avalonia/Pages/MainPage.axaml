@@ -29,9 +29,7 @@
                         CornerRadius="8"
                         Padding="12,10"
                         HorizontalAlignment="Stretch">
-                    <ToolTip.Tip>
-                        <ToolTip Content="Перейти к вычислению первой функции"/>
-                    </ToolTip.Tip>
+                    
                 </Button>
 
                 <Button Content="Выбери готовую сборку"
@@ -41,9 +39,7 @@
                         CornerRadius="8"
                         Padding="12,10"
                         HorizontalAlignment="Stretch">
-                    <ToolTip.Tip>
-                        <ToolTip Content="Перейти к вычислению второй функции"/>
-                    </ToolTip.Tip>
+                   
                 </Button>
             </StackPanel>
         </Border>

@@ -20,6 +20,6 @@ public partial class MainPage : Page
 
     private void Button_OnClick1(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        NavigationService?.Navigate(new AssemblyListPage());
     }
 }

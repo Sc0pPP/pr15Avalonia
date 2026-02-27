@@ -15,8 +15,8 @@ namespace pr15Avalonia.Pages;
 public partial class ChoiceGpuPage : Page
 {
     private readonly PcDbContext _context;
-    private ObservableCollection<Gpu> _allGpu; // Изменено на ObservableCollection
-    private ObservableCollection<Gpu> _filteredGpu; // Изменено на ObservableCollection
+    private ObservableCollection<Gpu> _allGpu; 
+    private ObservableCollection<Gpu> _filteredGpu; 
     public ChoiceGpuPage()
     {
         InitializeComponent();
@@ -53,7 +53,7 @@ public partial class ChoiceGpuPage : Page
 
     private void Back_Click(object? sender, RoutedEventArgs e)
     {
-        NavigationService.GoBack();
+        NavigationService?.GoBack();
     }
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)

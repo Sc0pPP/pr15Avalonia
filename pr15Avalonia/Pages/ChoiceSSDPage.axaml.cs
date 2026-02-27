@@ -35,12 +35,10 @@ public partial class ChoiceSSDPage : Page
             // отдельный список для ssd
             // отдельный список для hdd
             var Storagedevices = await _context.Storagedevices
-                .Include(m => m.IdNavigation) // Basepart
+                .Include(s => s.IdNavigation)
                 .ThenInclude(bp => bp.Manufacturer)
-                .Include(s=>s.Ssd)
-                .ThenInclude(s=>s.Tbw)
-                .Include(h=>h.Hdd)
-                .ThenInclude(h=>h.Rotationspeed)
+                .Include(s => s.Ssd)
+                .Include(s => s.Hdd)
                 .ToListAsync();
 
 
@@ -48,7 +46,7 @@ public partial class ChoiceSSDPage : Page
             _allStorageDevice = new ObservableCollection<Storagedevice>(Storagedevices);
             _filteredStorageDevice = new ObservableCollection<Storagedevice>(Storagedevices);
 
-            SSDListBox.ItemsSource = _allStorageDevice;
+            SSDListBox.ItemsSource = _filteredStorageDevice;
         }
         catch (Exception ex)
         {
@@ -58,7 +56,7 @@ public partial class ChoiceSSDPage : Page
     }
     private void Back_Click(object? sender, RoutedEventArgs e)
     {
-        NavigationService.GoBack();
+        NavigationService?.GoBack();
     }
     
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
@@ -189,7 +187,7 @@ public partial class ChoiceSSDPage : Page
                 else
                 {
                     Console.WriteLine("Материнская плата добавлена успешно!");
-                    NavigationService.Navigate(new ChoiceBPPage());
+                    NavigationService.Navigate(new FinalConfiguration());
                 }
 
             }
@@ -199,8 +197,7 @@ public partial class ChoiceSSDPage : Page
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-
-        NavigationService.Navigate(new ChoiceBPPage());
+        
     }  
 
     }

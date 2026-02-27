@@ -56,7 +56,7 @@ public partial class ChoiceCoolerPage : Page
 
     private void Back_Click(object? sender, RoutedEventArgs e)
     {
-        NavigationService.GoBack();
+        NavigationService?.GoBack();
     }
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)

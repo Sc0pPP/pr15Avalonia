@@ -35,6 +35,12 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/AssemblyDetailsPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/AssemblyListPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/ChoiceBPPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -57,6 +63,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/CollectPage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/FinalConfiguration.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/Scop/RiderProjects/pr15Avalonia/pr15Avalonia/Pages/MainPage.axaml]

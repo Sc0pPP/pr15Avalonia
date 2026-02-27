@@ -58,12 +58,9 @@ public partial class ChoiceRamPage : Page
 
     private void Select_Click(object? sender, RoutedEventArgs e)
     {
-      
         try
         {
-            var RamListBox = this.FindControl<ListBox>("RamListBox");
-
-            if (RamListBox.SelectedItem is Ram selected &&
+            if (CoolerListBox.SelectedItem is Ram selected &&
                 selected.IdNavigation != null)
             {
                 CurrentBuild.SelectedRam = selected;
@@ -72,30 +69,28 @@ public partial class ChoiceRamPage : Page
                 var errors = CompatibilityChecker.ValidateCurrentBuild(_context);
                 if (errors.Any())
                 {
-
                     var mainWindow = (Application.Current.ApplicationLifetime
                         as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
                     var dialogg = new Messagebox("Проблемы совместимости: " + string.Join(", ", errors));
                     dialogg.ShowDialog(mainWindow);
+                    // сбрасываем, раз несовместимо
+                    CurrentBuild.SelectedRam = null;
+                    CurrentBuild.RamBasePart = null;
                     return;
-                    Console.WriteLine("Проблемы совместимости: " + string.Join(", ", errors));
-                }
-                else
-                {
-                    Console.WriteLine("Материнская плата добавлена успешно!");
-                    NavigationService.Navigate(new ChoiceBPPage());
                 }
 
+                NavigationService.Navigate(new ChoiceBPPage());
             }
-
+            else
+            {
+                Console.WriteLine("Ничего не выбрано");
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ошибка выбора: {ex.Message}");
         }
-
-        NavigationService.Navigate(new ChoiceBPPage());
-    }  
+    }
     
 
     private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
