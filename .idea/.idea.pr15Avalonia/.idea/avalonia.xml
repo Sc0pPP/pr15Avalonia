@@ -6,6 +6,7 @@
         <entry key="pr15Avalonia/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/MainWindow.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/AssemblyDetailsPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/AssemblyListPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceBPPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceCasePage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceCoolerPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
@@ -14,6 +15,7 @@
         <entry key="pr15Avalonia/Pages/ChoiceRamPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/ChoiceSSDPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/CollectPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
+        <entry key="pr15Avalonia/Pages/FinalConfiguration.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MainPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/MessageBox.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />
         <entry key="pr15Avalonia/Pages/RMAssembliesPage.axaml" value="pr15Avalonia/pr15Avalonia.csproj" />

@@ -34,9 +34,7 @@ public partial class ChoiceGpuPage : Page
                 .ThenInclude(bp => bp.Manufacturer)
                 .Include(p => p.Gpuinterface)
                 .ToListAsync();
-
             
-
             _allGpu = new ObservableCollection<Gpu>(Gpus);
             _filteredGpu = new ObservableCollection<Gpu>(Gpus);
 

@@ -35,14 +35,7 @@ public partial class ChoiceProcessor : Page
                 .Include(m => m.Socket)
                 .ToListAsync();
 
-            // Фильтрация по совместимости
-            if (CurrentBuild.SelectedCpu != null)
-            {
-                Cpus = Cpus
-                    .Where(m => m.Socketid == CurrentBuild.SelectedCpu.Socketid)
-                    .ToList();
-            }
-
+          
             _allCpu = new ObservableCollection<Cpu>(Cpus);
             _filteredCpu = new ObservableCollection<Cpu>(Cpus);
 

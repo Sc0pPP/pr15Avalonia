@@ -40,13 +40,7 @@ namespace pr15Avalonia.Pages
                     .Include(m => m.Memorytype)
                     .ToListAsync();
 
-                // Фильтрация по совместимости
-                if (CurrentBuild.SelectedCpu != null)
-                {
-                    motherboards = motherboards
-                        .Where(m => m.Socketid == CurrentBuild.SelectedCpu.Socketid)
-                        .ToList();
-                }
+               
 
                 _allMotherboards = new ObservableCollection<Motherboard>(motherboards);
                 _filteredMotherboards = new ObservableCollection<Motherboard>(motherboards);
