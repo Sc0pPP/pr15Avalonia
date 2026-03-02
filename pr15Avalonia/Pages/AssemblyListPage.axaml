@@ -1,0 +1,78 @@
+<nav:Page xmlns="https://github.com/avaloniaui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:nav="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
+          xmlns:models="clr-namespace:pr15Avalonia.Models"
+          mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+          x:Class="pr15Avalonia.Pages.AssemblyListPage">
+
+    <Grid Background="#F0F4F8">
+        <Border Background="White"
+                CornerRadius="12"
+                BoxShadow="0 4 16 0 #1A000000"
+                Margin="16" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="10,10,10,5" CornerRadius="6">
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                        <TextBlock Text="Готовые сборки" FontSize="20" FontWeight="SemiBold"/>
+                        <Button Content="Назад" Width="130" Background="Bisque" Click="Back_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray" Margin="10,5,10,10" CornerRadius="6">
+                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             x:Name="AssemblyListBox"
+                             Margin="10"
+                             SelectionChanged="AssemblyListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Assembly">
+                                <Border BorderBrush="LightGray"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Margin="5"
+                                        Background="White">
+                                    <StackPanel Spacing="6">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="Bold"
+                                                   FontSize="18"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock FontSize="14" Foreground="Gray"
+                                                   Text="{Binding Partassemblies.Count, StringFormat='Компонентов: {0}'}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Border>
+
+                <Border Grid.Row="2" Margin="10,0,10,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <TextBlock x:Name="SelectedInfoText"
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   Margin="0,0,20,0"/>
+                        <Button Content="Открыть сборку"
+                                Width="150" Height="40"
+                                Background="Green" Foreground="White"
+                                FontSize="16"
+                                Click="Open_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Border>
+    </Grid>
+</nav:Page>

@@ -55,6 +55,9 @@ public partial class ChoiceBPPage : Page
 
 private void Back_Click(object? sender, RoutedEventArgs e)
 {
+    CurrentBuild.SelectedPowerSupply = null;
+    CurrentBuild.PowerSupplyBasePart = null;
+
     NavigationService?.GoBack();
 }
 
